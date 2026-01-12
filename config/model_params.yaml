@@ -1,0 +1,246 @@
+# Model Development Configuration for Phase 4: Model Development
+# HAB Forecasting System - Seto Inland Sea
+
+# XGBoost hyperparameters for risk percentage prediction
+xgboost_params:
+  # Basic parameters
+  objective: "reg:squarederror"  # Regression for risk percentage (0-100%)
+  eval_metric: "rmse"  # Root mean squared error for regression
+  random_state: 42
+  
+  # Tree parameters
+  max_depth: 6
+  min_child_weight: 1
+  subsample: 0.8
+  colsample_bytree: 0.8
+  colsample_bylevel: 0.8
+  
+  # Learning parameters
+  learning_rate: 0.1
+  n_estimators: 100
+  
+  # Regularization
+  reg_alpha: 0.1
+  reg_lambda: 1.0
+  
+  # Early stopping
+  early_stopping_rounds: 10
+  
+  # Risk percentage constraints
+  max_delta_step: 1.0  # Constrain predictions to reasonable range
+  base_score: 0.5  # Initial prediction bias
+
+# Model training settings
+training:
+  # Data splitting
+  train_ratio: 0.7
+  validation_ratio: 0.15
+  test_ratio: 0.15
+  
+  # Temporal splitting (if using time-based split)
+  temporal_split: true
+  train_end_date: "2020-12-31"
+  validation_end_date: "2022-06-30"
+  test_end_date: "2024-12-31"
+  
+  # Cross-validation
+  cv_folds: 5
+  cv_strategy: "time_series_split"  # or "stratified_kfold"
+  
+  # Risk percentage handling
+  risk_range: [0.0, 100.0]  # Risk percentage range
+  risk_calibration: true  # Calibrate risk estimates
+  uncertainty_quantification: true  # Quantify prediction uncertainty
+  
+  # Feature preprocessing
+  scale_features: true
+  scaling_method: "standard_scaler"
+  exclude_from_scaling:
+    - "week_of_year"
+    - "month"
+    - "season"
+    - "year"
+
+# Feature selection
+feature_selection:
+  # Selection methods
+  methods:
+    - "correlation"
+    - "variance"
+    - "importance"
+  
+  # Thresholds
+  correlation_threshold: 0.95
+  variance_threshold: 0.01
+  importance_threshold: 0.01
+  
+  # Top N features
+  top_n_features: 50
+  
+  # Target variable for importance-based selection
+  target_variable: "hab_risk_percentage"
+
+# Hyperparameter optimization
+hyperparameter_optimization:
+  # Optimization method
+  method: "bayesian"  # or "grid_search", "random_search"
+  
+  # Search space
+  search_space:
+    max_depth:
+      min: 3
+      max: 10
+      type: "integer"
+    min_child_weight:
+      min: 1
+      max: 10
+      type: "integer"
+    learning_rate:
+      min: 0.01
+      max: 0.3
+      type: "float"
+    n_estimators:
+      min: 50
+      max: 300
+      type: "integer"
+    subsample:
+      min: 0.6
+      max: 1.0
+      type: "float"
+    colsample_bytree:
+      min: 0.6
+      max: 1.0
+      type: "float"
+    reg_alpha:
+      min: 0.0
+      max: 1.0
+      type: "float"
+    reg_lambda:
+      min: 0.0
+      max: 2.0
+      type: "float"
+  
+  # Optimization settings
+  n_trials: 100
+  cv_folds: 5
+  scoring: "f1_score"
+  
+  # Early stopping
+  early_stopping: true
+  patience: 20
+
+# Model evaluation for risk percentage prediction
+evaluation:
+  # Metrics to compute
+  metrics:
+    - "rmse"
+    - "mae"
+    - "mape"
+    - "r2_score"
+    - "explained_variance"
+    - "mean_absolute_percentage_error"
+  
+  # Risk percentage evaluation
+  risk_thresholds:
+    low_risk: 25.0
+    moderate_risk: 50.0
+    high_risk: 75.0
+    extreme_risk: 90.0
+  
+  # Calibration evaluation
+  calibration_metrics:
+    - "brier_score"
+    - "reliability_diagram"
+    - "calibration_error"
+  
+  # Spatial evaluation
+  spatial_evaluation: true
+  spatial_metrics:
+    - "spatial_accuracy"
+    - "spatial_precision"
+    - "spatial_recall"
+  
+  # Temporal evaluation
+  temporal_evaluation: true
+  temporal_metrics:
+    - "temporal_accuracy"
+    - "lead_time_accuracy"
+    - "persistence_accuracy"
+
+# SHAP analysis
+shap_analysis:
+  # SHAP explainer type
+  explainer_type: "tree"  # or "kernel", "linear"
+  
+  # Analysis settings
+  background_samples: 1000
+  max_samples: 5000
+  
+  # Feature importance analysis
+  compute_feature_importance: true
+  top_n_features: 20
+  
+  # Interaction analysis
+  compute_interactions: true
+  max_interactions: 10
+  
+  # Visualization settings
+  plot_feature_importance: true
+  plot_summary_plots: true
+  plot_waterfall_plots: true
+  plot_force_plots: true
+  plot_interaction_plots: true
+
+# Model persistence
+model_persistence:
+  # Save settings
+  save_model: true
+  save_format: "pickle"  # or "joblib", "json"
+  save_metadata: true
+  
+  # Model versioning
+  version_control: true
+  model_version: "v1.0"
+  
+  # Directory structure
+  model_dir: "models"
+  results_dir: "results"
+  plots_dir: "plots"
+
+# Output settings
+output:
+  # Model files
+  model_filename: "hab_forecast_model"
+  config_filename: "model_config"
+  
+  # Results files
+  results_filename: "model_results"
+  metrics_filename: "model_metrics"
+  
+  # Plots
+  plot_format: "png"
+  plot_dpi: 300
+  plot_size: [12, 8]
+  
+  # Reports
+  generate_reports: true
+  report_format: "html"
+  include_plots: true
+
+# Performance settings
+performance:
+  # Parallel processing
+  n_jobs: 4
+  use_gpu: false
+  
+  # Memory management
+  memory_limit: "8GB"
+  chunk_size: 1000
+  
+  # Caching
+  cache_results: true
+  cache_dir: "cache"
+  
+  # Logging
+  log_level: "INFO"
+  save_logs: true 

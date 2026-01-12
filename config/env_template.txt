@@ -1,0 +1,20 @@
+# Environment Variables for HAB Forecasting System
+# Copy this file to .env and fill in your credentials
+
+# Copernicus Marine credentials
+# Register at: https://marine.copernicus.eu/
+COPERNICUS_USERNAME=lnolan1
+COPERNICUS_PASSWORD=EM2ExQhY%b#4vv8
+
+# Google Earth Engine credentials (optional)
+# Download service account key from: https://console.cloud.google.com/
+GOOGLE_APPLICATION_CREDENTIALS=/ee_sa.json
+
+# Database settings (if using)
+DATABASE_URL=postgresql://user:password@localhost:5432/hab_forecast
+
+# API keys (if needed)
+WEATHER_API_KEY=13c6e48f3404041f5e22eecc1f1a9fc2
+
+# Logging
+LOG_LEVEL=INFO 

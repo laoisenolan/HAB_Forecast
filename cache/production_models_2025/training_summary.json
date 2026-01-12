@@ -1,0 +1,52 @@
+{
+  "training_timestamp": "2025-08-12T02:16:20.511827",
+  "data_path": "cache/batch_processing/final_training_dataset.parquet",
+  "total_time_minutes": 0.16862181425094605,
+  "models_trained": 1,
+  "species_performance": {
+    "Global_HAB": {
+      "species": "Global_HAB",
+      "train_metrics": {
+        "accuracy": 0.9984289080911233,
+        "precision": 0.99375,
+        "recall": 1.0,
+        "f1": 0.9968652037617555,
+        "auc": 0.9999934143369884,
+        "ap": 0.9999803459119496
+      },
+      "test_metrics": {
+        "accuracy": 0.9843260188087775,
+        "precision": 0.9411764705882353,
+        "recall": 1.0,
+        "f1": 0.9696969696969697,
+        "auc": 0.9954497907949791,
+        "ap": 0.9833517540769605
+      },
+      "cv_scores": [
+        0.9922480620155039,
+        1.0,
+        0.9846153846153847,
+        1.0,
+        0.984375
+      ],
+      "cv_mean": 0.9922476893261777,
+      "cv_std": 0.006934377464931102,
+      "best_params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 100,
+        "subsample": 1.0
+      },
+      "n_features": 50,
+      "train_size": 1273,
+      "test_size": 319
+    }
+  },
+  "average_metrics": {
+    "avg_test_f1": 0.9696969696969697,
+    "avg_test_auc": 0.9954497907949791,
+    "avg_test_precision": 0.9411764705882353,
+    "avg_test_recall": 1.0
+  }
+}

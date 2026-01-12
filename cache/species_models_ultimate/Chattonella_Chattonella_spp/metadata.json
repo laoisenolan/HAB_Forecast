@@ -1,0 +1,94 @@
+{
+  "species": "Chattonella Chattonella spp.",
+  "features": [
+    "ocean_temperature_hycom",
+    "sea_surface_elevation",
+    "ocean_current_u",
+    "ocean_current_v",
+    "wind_u",
+    "wind_v",
+    "turbidity_index",
+    "precipitation",
+    "ocean_temperature_hycom_spatial",
+    "ocean_temperature_hycom_spatial_gradient",
+    "sea_surface_elevation_spatial",
+    "ocean_current_u_spatial",
+    "ocean_current_u_spatial_gradient",
+    "ocean_current_v_spatial",
+    "ocean_current_v_spatial_gradient",
+    "wind_u_spatial",
+    "wind_v_spatial",
+    "chlor_a_spatial",
+    "chlor_a_mean_spatial",
+    "turbidity_index_max",
+    "ocean_temperature_hycom_neighbor_max",
+    "sea_surface_elevation_neighbor_max",
+    "ocean_current_u_neighbor_max",
+    "ocean_current_v_neighbor_max",
+    "wind_u_neighbor_max",
+    "wind_v_neighbor_max",
+    "chlor_a_neighbor_max",
+    "chlor_a_mean_neighbor_max",
+    "turbidity_index_neighbor_max",
+    "turbidity_index_max_spatial"
+  ],
+  "feature_count": 30,
+  "metrics": {
+    "accuracy": 0.9984841820334969,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "auc": 0.9969649600064964
+  },
+  "feature_importance": [
+    [
+      "ocean_temperature_hycom_spatial",
+      "0.61428"
+    ],
+    [
+      "ocean_temperature_hycom",
+      "0.2544748"
+    ],
+    [
+      "wind_u",
+      "0.03834606"
+    ],
+    [
+      "ocean_current_v",
+      "0.028568916"
+    ],
+    [
+      "wind_u_spatial",
+      "0.023475628"
+    ]
+  ],
+  "confusion_matrix": {
+    "TP": 0,
+    "TN": 147551,
+    "FP": 223,
+    "FN": 1
+  },
+  "training_info": {
+    "species": "Chattonella Chattonella spp.",
+    "train_samples": 591099,
+    "test_samples": 147775,
+    "positive_samples": "6",
+    "positive_rate": 8.120464382289809e-06,
+    "model_params": {
+      "objective": "binary:logistic",
+      "eval_metric": "auc",
+      "random_state": 42,
+      "n_jobs": -1,
+      "verbosity": 0,
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.03,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1,
+      "scale_pos_weight": 118218.8
+    },
+    "created_at": "2025-08-12T19:50:12.160474"
+  }
+}

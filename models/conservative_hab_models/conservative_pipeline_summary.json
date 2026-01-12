@@ -1,0 +1,87 @@
+{
+  "pipeline_start": "2025-08-11T11:17:45.514631",
+  "pipeline_duration": "0:00:00.623569",
+  "approach": "conservative_temporal_validation",
+  "data_files": {
+    "integrated": "D:\\Work\\Projects\\HAB_Forecast\\cache\\conservative_pipeline\\01_integrated_data.csv",
+    "cleaned": "D:\\Work\\Projects\\HAB_Forecast\\cache\\conservative_pipeline\\02_cleaned_data.csv",
+    "engineered": "D:\\Work\\Projects\\HAB_Forecast\\cache\\conservative_pipeline\\03_engineered_data.csv"
+  },
+  "data_progression": {
+    "integrated_records": 1081,
+    "cleaned_records": 1076,
+    "final_features": 39
+  },
+  "temporal_analysis": {
+    "total_records": 1076,
+    "split_date": "2019-01-29T00:00:00",
+    "train_period": "2017-01-01 00:00:00 to 2019-01-28 00:00:00",
+    "test_period": "2019-01-29 00:00:00 to 2019-12-17 00:00:00",
+    "train_records": 753,
+    "test_records": 323,
+    "species_distribution": {
+      "Karenia mikimotoi": {
+        "train_positive": 273,
+        "test_positive": 142,
+        "train_total": 753,
+        "test_total": 323
+      },
+      "Heterosigma akashiwo": {
+        "train_positive": 294,
+        "test_positive": 177,
+        "train_total": 753,
+        "test_total": 323
+      },
+      "Chattonella antiqua": {
+        "train_positive": 166,
+        "test_positive": 64,
+        "train_total": 753,
+        "test_total": 323
+      },
+      "Cochlodinium polykrikoides": {
+        "train_positive": 153,
+        "test_positive": 112,
+        "train_total": 753,
+        "test_total": 323
+      }
+    }
+  },
+  "model_performance": {
+    "Karenia mikimotoi": {
+      "f1_score": 0.784452296819788,
+      "precision": 0.7872340425531915,
+      "recall": 0.7816901408450704,
+      "train_positive": 273,
+      "test_positive": 142,
+      "train_total": 753,
+      "test_total": 323
+    },
+    "Heterosigma akashiwo": {
+      "f1_score": 0.6666666666666666,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "train_positive": 294,
+      "test_positive": 177,
+      "train_total": 753,
+      "test_total": 323
+    },
+    "Chattonella antiqua": {
+      "f1_score": 0.8275862068965517,
+      "precision": 0.7407407407407407,
+      "recall": 0.9375,
+      "train_positive": 166,
+      "test_positive": 64,
+      "train_total": 753,
+      "test_total": 323
+    },
+    "Cochlodinium polykrikoides": {
+      "f1_score": 0.6923076923076923,
+      "precision": 0.9,
+      "recall": 0.5625,
+      "train_positive": 153,
+      "test_positive": 112,
+      "train_total": 753,
+      "test_total": 323
+    }
+  }
+}

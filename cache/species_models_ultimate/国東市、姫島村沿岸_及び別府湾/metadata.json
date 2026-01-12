@@ -1,0 +1,94 @@
+{
+  "species": "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e",
+  "features": [
+    "sst",
+    "sst_mean",
+    "ocean_temperature_hycom",
+    "sea_surface_elevation",
+    "ocean_current_u",
+    "ocean_current_v",
+    "wind_u",
+    "ocean_salinity",
+    "precipitation",
+    "sst_spatial",
+    "sst_mean_spatial",
+    "ocean_temperature_hycom_spatial",
+    "sea_surface_elevation_spatial",
+    "ocean_current_u_spatial",
+    "ocean_current_v_spatial",
+    "wind_u_spatial",
+    "turbidity_index_max",
+    "sst_neighbor_max",
+    "sst_mean_neighbor_max",
+    "ocean_temperature_hycom_neighbor_max",
+    "sea_surface_elevation_neighbor_max",
+    "ocean_current_u_neighbor_max",
+    "ocean_current_v_neighbor_max",
+    "wind_u_neighbor_max",
+    "chlor_a_mean_neighbor_max",
+    "Rrs_443_neighbor_max",
+    "Rrs_443_mean_neighbor_max",
+    "Rrs_555_neighbor_max",
+    "Rrs_555_mean_neighbor_max",
+    "turbidity_index_max_spatial"
+  ],
+  "feature_count": 30,
+  "metrics": {
+    "accuracy": 0.9979089832515649,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "auc": 0.9839213934792319
+  },
+  "feature_importance": [
+    [
+      "ocean_salinity",
+      "0.44904327"
+    ],
+    [
+      "sea_surface_elevation",
+      "0.20253892"
+    ],
+    [
+      "sea_surface_elevation_spatial",
+      "0.17214055"
+    ],
+    [
+      "ocean_current_u_spatial",
+      "0.052048244"
+    ],
+    [
+      "precipitation",
+      "0.03999833"
+    ]
+  ],
+  "confusion_matrix": {
+    "TP": 0,
+    "TN": 147466,
+    "FP": 308,
+    "FN": 1
+  },
+  "training_info": {
+    "species": "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e",
+    "train_samples": 591100,
+    "test_samples": 147775,
+    "positive_samples": "7",
+    "positive_rate": 9.47386229064456e-06,
+    "model_params": {
+      "objective": "binary:logistic",
+      "eval_metric": "auc",
+      "random_state": 42,
+      "n_jobs": -1,
+      "verbosity": 0,
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.03,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1,
+      "scale_pos_weight": 98515.66666666667
+    },
+    "created_at": "2025-08-12T19:50:03.746149"
+  }
+}

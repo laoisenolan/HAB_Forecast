@@ -1,0 +1,46 @@
+{
+  "metrics": {
+    "accuracy": 0.7692307692307693,
+    "precision": 0.5333333333333333,
+    "recall": 0.5,
+    "f1_score": 0.5161290322580645,
+    "cv_f1_mean": 0.40666977466977466,
+    "cv_f1_std": 0.16849920293764029,
+    "auc": 0.7602040816326531,
+    "avg_precision": 0.5369193708892726
+  },
+  "feature_importance": {
+    "chlorophyll_a": "0.08111868",
+    "dissolved_oxygen": "0.072872184",
+    "mixed_layer_depth": "0.074018225",
+    "nitrate": "0.08692942",
+    "ocean_salinity": "0.10163104",
+    "ocean_temperature": "0.1188852",
+    "phosphate": "0.064831726",
+    "precipitation": "0.061491944",
+    "sea_surface_temperature": "0.07758215",
+    "silicate": "0.08099591",
+    "turbidity_kd490": "0.075159475",
+    "wind_u": "0.058788806",
+    "wind_v": "0.045695234"
+  },
+  "selected_features": [
+    "chlorophyll_a",
+    "dissolved_oxygen",
+    "mixed_layer_depth",
+    "nitrate",
+    "ocean_salinity",
+    "ocean_temperature",
+    "phosphate",
+    "precipitation",
+    "sea_surface_temperature",
+    "silicate",
+    "turbidity_kd490",
+    "wind_u",
+    "wind_v"
+  ],
+  "training_samples": 259,
+  "test_samples": 65,
+  "positive_rate": 0.25096525096525096,
+  "timestamp": "2025-08-10T13:43:18.313746"
+}

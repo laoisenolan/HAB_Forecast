@@ -1,0 +1,35 @@
+{
+  "training_timestamp": "2025-08-12T02:49:28.042397",
+  "models_trained": 1,
+  "training_methodology": "proper_geographic_temporal",
+  "validation_method": "temporal_cross_validation",
+  "results": {
+    "Global_HAB": {
+      "species": "Global_HAB",
+      "cv_scores": [
+        {
+          "f1": 0.225,
+          "auc": 0.91517863184019
+        },
+        {
+          "f1": 0.3867069486404834,
+          "auc": 0.9822636554255745
+        },
+        {
+          "f1": 0.14678899082568808,
+          "auc": 0.9981189819050127
+        },
+        {
+          "f1": 0.007554296506137866,
+          "auc": 0.99968244499095
+        }
+      ],
+      "avg_f1": 0.19151255899307731,
+      "avg_auc": 0.9738109285404317,
+      "std_f1": 0.1369882279083246,
+      "n_features": 50,
+      "dataset_size": 739266,
+      "positive_rate": 0.0005383718445052255
+    }
+  }
+}

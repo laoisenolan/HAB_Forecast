@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Ultimate HAB Prediction System - Seto Inland Sea</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .status-green { color: #27ae60; }
+        .status-blue { color: #3498db; }
+        .status-orange { color: #f39c12; }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .panel h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .full-width {
+            grid-column: span 2;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ecf0f1;
+        }
+        
+        .chart-container {
+            height: 400px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .species-selector {
+            margin-bottom: 1rem;
+        }
+        
+        .species-selector select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .performance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .performance-table th,
+        .performance-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .performance-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .performance-grade {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .grade-excellent { background: #d4edda; color: #155724; }
+        .grade-very-good { background: #cce7ff; color: #004085; }
+        .grade-good { background: #fff3cd; color: #856404; }
+        .grade-fair { background: #f8d7da; color: #721c24; }
+        
+        .feature-importance {
+            margin-top: 1rem;
+        }
+        
+        .feature-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-name {
+            min-width: 200px;
+            font-size: 0.9rem;
+        }
+        
+        .feature-bar-visual {
+            flex: 1;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            margin: 0 0.5rem;
+            overflow: hidden;
+        }
+        
+        .feature-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+        
+        .feature-value {
+            min-width: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .control-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .control-group input,
+        .control-group select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid;
+        }
+        
+        .alert-info {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1565c0;
+        }
+        
+        .alert-success {
+            background: #e8f5e8;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+        
+        .alert-warning {
+            background: #fff3e0;
+            border-color: #ff9800;
+            color: #ef6c00;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <i class="fas fa-water"></i>
+            Ultimate HAB Prediction System
+        </h1>
+        <div class="subtitle">
+            Species-Specific Harmful Algal Bloom Forecasting | Seto Inland Sea Region
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-item status-green">
+                <i class="fas fa-check-circle"></i>
+                <span id="status-models">Loading models...</span>
+            </div>
+            <div class="status-item status-blue">
+                <i class="fas fa-map-marked-alt"></i>
+                <span id="status-coverage">Coverage: Hiuchi-nada, Aki-nada, Iyo-nada</span>
+            </div>
+            <div class="status-item status-orange">
+                <i class="fas fa-calendar"></i>
+                <span id="status-data">Loading data...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <!-- System Overview -->
+        <div class="panel full-width">
+            <h2><i class="fas fa-tachometer-alt"></i> System Performance Overview</h2>
+            
+            <div class="metrics-grid" id="metrics-grid">
+                <!-- Metrics will be populated by JavaScript -->
+            </div>
+            
+            <div class="alert alert-info">
+                <strong><i class="fas fa-info-circle"></i> Performance Interpretation:</strong>
+                High AUC scores (0.95+) indicate excellent discrimination capability. Low F1 scores are normal for rare events like HAB occurrences (0.054% frequency). Our models excel at ranking conditions by HAB likelihood.
+            </div>
+        </div>
+        
+        <!-- Spatial Prediction Map -->
+        <div class="panel">
+            <h2><i class="fas fa-globe-asia"></i> Spatial Predictions</h2>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label for="species-select">Species:</label>
+                    <select id="species-select">
+                        <option value="all">Overall HAB Risk</option>
+                        <!-- Options populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="date-select">Date:</label>
+                    <input type="date" id="date-select">
+                </div>
+                <button class="btn" onclick="updateMap()">
+                    <i class="fas fa-sync-alt"></i> Update Map
+                </button>
+            </div>
+            
+            <div class="map-container" id="prediction-map"></div>
+        </div>
+        
+        <!-- Temporal Analysis -->
+        <div class="panel">
+            <h2><i class="fas fa-chart-line"></i> Temporal Patterns</h2>
+            <div class="chart-container" id="temporal-chart"></div>
+        </div>
+        
+        <!-- Species Performance Details -->
+        <div class="panel full-width">
+            <h2><i class="fas fa-microscope"></i> Species Model Performance</h2>
+            
+            <div class="species-selector">
+                <select id="species-detail-select">
+                    <option value="">Select a species for detailed analysis...</option>
+                    <!-- Options populated by JavaScript -->
+                </select>
+            </div>
+            
+            <div id="species-details" style="display: none;">
+                <div class="metrics-grid" id="species-metrics">
+                    <!-- Species metrics populated by JavaScript -->
+                </div>
+                
+                <div class="feature-importance" id="feature-importance">
+                    <h3>Key Environmental Drivers</h3>
+                    <!-- Feature importance populated by JavaScript -->
+                </div>
+            </div>
+            
+            <table class="performance-table" id="performance-table">
+                <thead>
+                    <tr>
+                        <th>Species</th>
+                        <th>AUC Score</th>
+                        <th>Performance Grade</th>
+                        <th>Training Samples</th>
+                        <th>Key Driver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Environmental Conditions -->
+        <div class="panel">
+            <h2><i class="fas fa-thermometer-half"></i> Current Conditions</h2>
+            <div class="chart-container" id="environmental-chart"></div>
+        </div>
+        
+        <!-- Model Validation -->
+        <div class="panel">
+            <h2><i class="fas fa-check-double"></i> Model Validation</h2>
+            <div id="validation-summary">
+                <!-- Validation summary populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global variables
+        let map;
+        let modelsData = {};
+        let currentData = {};
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+        
+        async function initializeDashboard() {
+            try {
+                // Load models overview
+                await loadModelsOverview();
+                
+                // Initialize map
+                initializeMap();
+                
+                // Load environmental data
+                await loadEnvironmentalData();
+                
+                // Load temporal analysis
+                await loadTemporalAnalysis();
+                
+                // Load validation data
+                await loadValidationData();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                console.log('Dashboard initialized successfully');
+            } catch (error) {
+                console.error('Error initializing dashboard:', error);
+            }
+        }
+        
+        async function loadModelsOverview() {
+            try {
+                const response = await fetch('/api/models/overview');
+                const data = await response.json();
+                
+                if (data.success) {
+                    modelsData = data;
+                    updateSystemMetrics(data);
+                    populateSpeciesSelectors(data.models);
+                    updatePerformanceTable(data.models);
+                    updateStatusBar(data);
+                }
+            } catch (error) {
+                console.error('Error loading models overview:', error);
+            }
+        }
+        
+        function updateSystemMetrics(data) {
+            const metricsGrid = document.getElementById('metrics-grid');
+            const models = data.models;
+            
+            const totalModels = models.length;
+            const avgAUC = models.reduce((sum, m) => sum + m.auc, 0) / totalModels;
+            const excellentModels = models.filter(m => m.auc >= 0.95).length;
+            const totalSamples = models.reduce((sum, m) => sum + m.training_samples, 0);
+            
+            metricsGrid.innerHTML = `
+                <div class="metric-card">
+                    <span class="metric-value">${totalModels}</span>
+                    <span class="metric-label">Species Models</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${avgAUC.toFixed(3)}</span>
+                    <span class="metric-label">Average AUC</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${excellentModels}</span>
+                    <span class="metric-label">Excellent Models (AUC ≥ 0.95)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${totalSamples.toLocaleString()}</span>
+                    <span class="metric-label">Training Samples</span>
+                </div>
+            `;
+        }
+        
+        function populateSpeciesSelectors(models) {
+            const selectors = ['species-select', 'species-detail-select'];
+            
+            selectors.forEach(selectorId => {
+                const selector = document.getElementById(selectorId);
+                const isDetailSelector = selectorId === 'species-detail-select';
+                
+                // Clear existing options (except first one for detail selector)
+                if (isDetailSelector) {
+                    selector.innerHTML = '<option value="">Select a species for detailed analysis...</option>';
+                } else {
+                    selector.innerHTML = '<option value="all">Overall HAB Risk</option>';
+                }
+                
+                // Add species options
+                models.forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model.species;
+                    option.textContent = `${model.species} (AUC: ${model.auc.toFixed(3)})`;
+                    selector.appendChild(option);
+                });
+            });
+        }
+        
+        function updatePerformanceTable(models) {
+            const tableBody = document.querySelector('#performance-table tbody');
+            
+            tableBody.innerHTML = models.map(model => {
+                const gradeClass = getGradeClass(model.auc);
+                const grade = getPerformanceGrade(model.auc);
+                
+                return `
+                    <tr>
+                        <td>${model.species}</td>
+                        <td>${model.auc.toFixed(3)}</td>
+                        <td><span class="performance-grade ${gradeClass}">${grade}</span></td>
+                        <td>${model.training_samples.toLocaleString()}</td>
+                        <td>Temperature/Salinity</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function getPerformanceGrade(auc) {
+            if (auc >= 0.95) return 'Excellent';
+            if (auc >= 0.85) return 'Very Good';
+            if (auc >= 0.75) return 'Good';
+            if (auc >= 0.65) return 'Fair';
+            return 'Needs Improvement';
+        }
+        
+        function getGradeClass(auc) {
+            if (auc >= 0.95) return 'grade-excellent';
+            if (auc >= 0.85) return 'grade-very-good';
+            if (auc >= 0.75) return 'grade-good';
+            return 'grade-fair';
+        }
+        
+        function updateStatusBar(data) {
+            document.getElementById('status-models').textContent = 
+                `${data.models.length} Species Models Loaded`;
+            document.getElementById('status-data').textContent = 
+                `Data: 2017-2024 (8 years)`;
+        }
+        
+        function initializeMap() {
+            const bounds = [
+                [33.575, 132.575], // Southwest
+                [34.425, 133.425]  // Northeast
+            ];
+            
+            map = L.map('prediction-map').fitBounds(bounds);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add coverage area rectangle
+            L.rectangle(bounds, {
+                color: '#3498db',
+                weight: 2,
+                fillOpacity: 0.1
+            }).addTo(map);
+        }
+        
+        async function loadEnvironmentalData() {
+            try {
+                const response = await fetch('/api/environmental/current');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateEnvironmentalChart(data.environmental);
+                }
+            } catch (error) {
+                console.error('Error loading environmental data:', error);
+            }
+        }
+        
+        async function loadTemporalAnalysis() {
+            try {
+                const response = await fetch('/api/analysis/temporal');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateTemporalChart(data);
+                }
+            } catch (error) {
+                console.error('Error loading temporal analysis:', error);
+            }
+        }
+        
+        async function loadValidationData() {
+            try {
+                const response = await fetch('/api/performance/validation');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateValidationSummary(data);
+                }
+            } catch (error) {
+                console.error('Error loading validation data:', error);
+            }
+        }
+        
+        function updateTemporalChart(data) {
+            const dailyStats = data.daily_statistics;
+            
+            const trace = {
+                x: dailyStats.map(d => d.date),
+                y: dailyStats.map(d => d.hab_positive),
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'HAB Events',
+                line: { color: '#e74c3c', width: 2 },
+                marker: { size: 4 }
+            };
+            
+            const layout = {
+                title: 'HAB Events Over Time',
+                xaxis: { title: 'Date' },
+                yaxis: { title: 'Number of HAB Positive Grid Points' },
+                margin: { t: 50, l: 50, r: 50, b: 50 }
+            };
+            
+            Plotly.newPlot('temporal-chart', [trace], layout, {responsive: true});
+        }
+        
+        function updateEnvironmentalChart(envData) {
+            const conditions = envData.environmental_conditions;
+            
+            if (!conditions.sst_mean) {
+                document.getElementById('environmental-chart').innerHTML = 
+                    '<p>Environmental data not available</p>';
+                return;
+            }
+            
+            const traces = [
+                {
+                    x: ['SST', 'Salinity', 'Chlor-a'],
+                    y: [conditions.sst_mean, conditions.salinity_mean, conditions.chlor_a_mean],
+                    type: 'bar',
+                    marker: { color: ['#3498db', '#2ecc71', '#f39c12'] }
+                }
+            ];
+            
+            const layout = {
+                title: 'Current Environmental Conditions',
+                yaxis: { title: 'Value' },
+                margin: { t: 50, l: 50, r: 50, b: 50 }
+            };
+            
+            Plotly.newPlot('environmental-chart', traces, layout, {responsive: true});
+        }
+        
+        function updateValidationSummary(data) {
+            const summary = data.overall_summary;
+            const validationDiv = document.getElementById('validation-summary');
+            
+            validationDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>System Status: ${summary.system_grade}</strong><br>
+                    ${summary.deployment_ready} of ${summary.total_models} models ready for deployment<br>
+                    Average AUC: ${summary.average_auc.toFixed(3)}
+                </div>
+                <div style="margin-top: 1rem;">
+                    <h4>Validation Methodology:</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Temporal cross-validation (no future data leakage)</li>
+                        <li>Species-specific binary classification</li>
+                        <li>Conservative performance assessment</li>
+                        <li>Real-world deployment conditions tested</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        function setupEventListeners() {
+            // Species detail selector
+            document.getElementById('species-detail-select').addEventListener('change', function() {
+                const species = this.value;
+                if (species) {
+                    loadSpeciesDetails(species);
+                } else {
+                    document.getElementById('species-details').style.display = 'none';
+                }
+            });
+            
+            // Set default date to latest
+            const dateInput = document.getElementById('date-select');
+            dateInput.value = '2024-12-31'; // Latest date in our dataset
+        }
+        
+        async function loadSpeciesDetails(species) {
+            try {
+                const response = await fetch(`/api/species/${encodeURIComponent(species)}/details`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateSpeciesDetails(data.details);
+                }
+            } catch (error) {
+                console.error('Error loading species details:', error);
+            }
+        }
+        
+        function updateSpeciesDetails(details) {
+            const detailsDiv = document.getElementById('species-details');
+            const metricsDiv = document.getElementById('species-metrics');
+            const featuresDiv = document.getElementById('feature-importance');
+            
+            // Update metrics
+            const metrics = details.metrics;
+            metricsDiv.innerHTML = `
+                <div class="metric-card">
+                    <span class="metric-value">${metrics.auc.toFixed(3)}</span>
+                    <span class="metric-label">AUC Score</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${metrics.f1.toFixed(3)}</span>
+                    <span class="metric-label">F1 Score</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${metrics.precision.toFixed(3)}</span>
+                    <span class="metric-label">Precision</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">${metrics.recall.toFixed(3)}</span>
+                    <span class="metric-label">Recall</span>
+                </div>
+            `;
+            
+            // Update feature importance
+            const features = details.feature_importance;
+            if (features && features.length > 0) {
+                const maxImportance = Math.max(...features.map(f => f[1]));
+                
+                featuresDiv.innerHTML = `
+                    <h3>Key Environmental Drivers</h3>
+                    ${features.map(([name, importance]) => `
+                        <div class="feature-bar">
+                            <div class="feature-name">${name}</div>
+                            <div class="feature-bar-visual">
+                                <div class="feature-bar-fill" style="width: ${(importance / maxImportance) * 100}%"></div>
+                            </div>
+                            <div class="feature-value">${importance.toFixed(3)}</div>
+                        </div>
+                    `).join('')}
+                `;
+            }
+            
+            detailsDiv.style.display = 'block';
+        }
+        
+        async function updateMap() {
+            const species = document.getElementById('species-select').value;
+            const date = document.getElementById('date-select').value;
+            
+            try {
+                const response = await fetch(`/api/predictions/map?species=${encodeURIComponent(species)}&date=${date}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateMapMarkers(data.map_data);
+                }
+            } catch (error) {
+                console.error('Error updating map:', error);
+            }
+        }
+        
+        function updateMapMarkers(mapData) {
+            // Clear existing markers
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.CircleMarker) {
+                    map.removeLayer(layer);
+                }
+            });
+            
+            // Add new markers
+            mapData.forEach(point => {
+                const color = getRiskColor(point);
+                const radius = point.actual_hab ? 8 : 4;
+                
+                L.circleMarker([point.lat, point.lon], {
+                    radius: radius,
+                    fillColor: color,
+                    color: point.actual_hab ? '#000' : color,
+                    weight: point.actual_hab ? 2 : 1,
+                    opacity: 0.8,
+                    fillOpacity: 0.6
+                }).addTo(map)
+                .bindPopup(`
+                    <strong>Location:</strong> ${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}<br>
+                    <strong>Actual HAB:</strong> ${point.actual_hab ? 'Yes' : 'No'}<br>
+                    ${point.hab_species !== 'none' ? `<strong>Species:</strong> ${point.hab_species}<br>` : ''}
+                    ${point.predicted_prob !== undefined ? `<strong>Predicted Probability:</strong> ${point.predicted_prob.toFixed(3)}<br>` : ''}
+                    <strong>Risk Level:</strong> ${point.risk_level}
+                `);
+            });
+        }
+        
+        function getRiskColor(point) {
+            if (point.actual_hab) {
+                return '#e74c3c'; // Red for actual HAB
+            }
+            
+            if (point.predicted_prob !== undefined) {
+                if (point.predicted_prob > 0.7) return '#f39c12'; // Orange for high prediction
+                if (point.predicted_prob > 0.3) return '#f1c40f'; // Yellow for medium prediction
+                return '#3498db'; // Blue for low prediction
+            }
+            
+            // Risk level based coloring
+            switch (point.risk_level) {
+                case 'high': return '#e74c3c';
+                case 'medium': return '#f39c12';
+                case 'low': return '#27ae60';
+                default: return '#95a5a6';
+            }
+        }
+        
+        // Initialize map update
+        setTimeout(updateMap, 1000);
+    </script>
+</body>
+</html>

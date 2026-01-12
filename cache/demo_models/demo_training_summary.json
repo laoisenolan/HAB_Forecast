@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-08-12T03:11:45.306373",
+  "global_model": {
+    "model_type": "Global_HAB",
+    "auc": 0.9999701579638078,
+    "f1_score": 0.9919666765843499,
+    "precision": 0.9920650664550684,
+    "recall": 0.9918683062276874,
+    "n_features": 50,
+    "train_samples": 591412,
+    "test_samples": 147854
+  },
+  "species_models": {
+    "Chattonella spp.": {
+      "model_type": "Species_Specific",
+      "species": "Chattonella spp.",
+      "auc": 0.9993798235602656,
+      "f1_score": 0.9811884144520753,
+      "precision": 0.9636363636363636,
+      "recall": 0.9993917274939172,
+      "n_features": 30,
+      "train_samples": 26297,
+      "test_samples": 6575
+    },
+    "Chattonella antiqua Chattonella marina Chattonella ovata": {
+      "model_type": "Species_Specific",
+      "species": "Chattonella antiqua Chattonella marina Chattonella ovata",
+      "auc": 0.9978710524835134,
+      "f1_score": 0.9688834655277608,
+      "precision": 0.949193066347878,
+      "recall": 0.9894080996884735,
+      "n_features": 30,
+      "train_samples": 25686,
+      "test_samples": 6422
+    },
+    "Karenia mikimotoi": {
+      "model_type": "Species_Specific",
+      "species": "Karenia mikimotoi",
+      "auc": 0.9991193710441518,
+      "f1_score": 0.9809523809523809,
+      "precision": 0.9626168224299065,
+      "recall": 1.0,
+      "n_features": 30,
+      "train_samples": 9888,
+      "test_samples": 2472
+    }
+  },
+  "total_models": 4,
+  "demo_ready": true
+}

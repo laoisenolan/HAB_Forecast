@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-08-12T19:02:10.381545",
+  "duration_seconds": 4.783506,
+  "total_dataset_size": 739266,
+  "our_area_size": 739266,
+  "coverage_bounds": {
+    "lat_min": 33.575,
+    "lat_max": 34.425,
+    "lon_min": 132.575,
+    "lon_max": 133.425
+  },
+  "model_metrics": {
+    "f1": 0.0040869403678246334,
+    "auc": 0.8222821250693626
+  },
+  "features_used": 31
+}

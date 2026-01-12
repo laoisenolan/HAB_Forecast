@@ -1,0 +1,84 @@
+{
+  "processing_timestamp": "2025-08-11T11:55:01.649329",
+  "processing_stats": {
+    "rows_processed": 2200,
+    "rows_in_final_dataset": 2183,
+    "processing_time_seconds": 0.867226,
+    "fixes_by_year": {
+      "2014-2019": 1624,
+      "2020-2021": 516,
+      "2022-2023": 60
+    },
+    "issues_by_category": {
+      "column_misalignment": 516,
+      "date_format_error": 0,
+      "missing_data": 180,
+      "data_type_error": 21,
+      "validation_error": 0,
+      "encoding_error": 0,
+      "duplicate_entry": 17
+    }
+  },
+  "data_quality": {
+    "total_rows": 2183,
+    "valid_years": "2183",
+    "valid_start_dates": "762",
+    "valid_end_dates": "572",
+    "valid_species": "2183",
+    "valid_cell_counts": "1036",
+    "valid_locations": "2183",
+    "missing_data_percentage": 22.40647427088105,
+    "duplicate_entries": "0",
+    "date_range_years": [
+      2014,
+      2022
+    ],
+    "species_count": 387,
+    "location_count": 463
+  },
+  "year_distribution": {
+    "2014": 319,
+    "2015": 280,
+    "2016": 284,
+    "2017": 242,
+    "2018": 276,
+    "2019": 206,
+    "2020": 271,
+    "2021": 245,
+    "2022": 60
+  },
+  "top_species": {
+    "無": 356,
+    "Karenia mikimotoi": 159,
+    "Heterosigma akashiwo": 143,
+    "Noctiluca scintillans": 63,
+    "Unidentified": 60,
+    "Skeletonema spp.": 50,
+    "Cochlodinium polykrikoides": 29,
+    "Mesodinium rubrum": 29,
+    "Chattonella spp.": 25,
+    "大阪府": 25
+  },
+  "top_locations": {
+    "大分県": 184,
+    "大阪府": 141,
+    "高知県": 111,
+    "Karenia mikimotoi": 97,
+    "香川県": 72,
+    "山口県": 69,
+    "Heterosigma akashiwo": 69,
+    "": 68,
+    "徳島県": 52,
+    "浦ノ内湾": 51
+  },
+  "config_used": {
+    "create_backup": true,
+    "validate_data": true,
+    "check_duplicates": true,
+    "fix_encoding_issues": true,
+    "progress_reporting": true,
+    "detailed_logging": true,
+    "cell_count_threshold": 1000000,
+    "duration_threshold": 365
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "timestamp": "2025-08-12T19:50:19.756507",
+  "duration_seconds": 112.091835,
+  "dataset_info": {
+    "total_samples": 739266,
+    "hab_positive_samples": 398,
+    "date_range": "2017-01-01 00:00:00 to 2024-12-31 00:00:00",
+    "features_used": 54,
+    "feature_list": [
+      "sst",
+      "sst_mean",
+      "ocean_temperature_hycom",
+      "sea_surface_elevation",
+      "ocean_current_u",
+      "ocean_current_v",
+      "wind_u",
+      "wind_v",
+      "chlor_a",
+      "chlor_a_mean",
+      "turbidity_index",
+      "ocean_salinity",
+      "precipitation",
+      "distance_to_coast",
+      "sst_spatial",
+      "sst_spatial_gradient",
+      "sst_mean_spatial",
+      "sst_mean_spatial_gradient",
+      "ocean_temperature_hycom_spatial",
+      "ocean_temperature_hycom_spatial_gradient",
+      "sea_surface_elevation_spatial",
+      "sea_surface_elevation_spatial_gradient",
+      "ocean_current_u_spatial",
+      "ocean_current_u_spatial_gradient",
+      "ocean_current_v_spatial",
+      "ocean_current_v_spatial_gradient",
+      "wind_u_spatial",
+      "wind_u_spatial_gradient",
+      "wind_v_spatial",
+      "wind_v_spatial_gradient",
+      "chlor_a_spatial",
+      "chlor_a_spatial_gradient",
+      "chlor_a_mean_spatial",
+      "chlor_a_mean_spatial_gradient",
+      "turbidity_index_max",
+      "sst_neighbor_max",
+      "sst_mean_neighbor_max",
+      "ocean_temperature_hycom_neighbor_max",
+      "sea_surface_elevation_neighbor_max",
+      "ocean_current_u_neighbor_max",
+      "ocean_current_v_neighbor_max",
+      "wind_u_neighbor_max",
+      "wind_v_neighbor_max",
+      "chlor_a_neighbor_max",
+      "chlor_a_mean_neighbor_max",
+      "Rrs_443_neighbor_max",
+      "Rrs_443_mean_neighbor_max",
+      "Rrs_555_neighbor_max",
+      "Rrs_555_mean_neighbor_max",
+      "Rrs_667_neighbor_max",
+      "Rrs_667_mean_neighbor_max",
+      "turbidity_index_neighbor_max",
+      "turbidity_index_max_spatial",
+      "turbidity_index_max_spatial_gradient"
+    ]
+  },
+  "species_analysis": {
+    "total_unique_species": 14,
+    "viable_species_count": 12,
+    "species_distribution": {
+      "\u770c\u6771\u90e8\u6d77\u57df(\u4e09\u539f\u5e02 \u4ee5\u6771)": 158,
+      "none": 59,
+      "Chattonella antiqua Chattonella ovata": 34,
+      "Karenia mikimotoi": 30,
+      "Chattonella": 27,
+      "Prorocentrum spp.": 21,
+      "Heterosigma akashiwo Chattonella antiqua Chattonella marina": 15,
+      "Chattonella antiqua Chattonella marina Chattonella ovata": 13,
+      "Cochlodinium polykrikoides": 12,
+      "Heterosigma akashiwo": 9,
+      "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e": 7,
+      "Chattonella Chattonella spp.": 6,
+      "Chattonella spp.": 5,
+      "Chattonell ovata Chattonella antiqua Chattonella marina": 1,
+      "Noctiluca scintillans": 1
+    }
+  },
+  "training_results": {
+    "successful_models": 12,
+    "failed_models": 0,
+    "species_results": {
+      "\u770c\u6771\u90e8\u6d77\u57df(\u4e09\u539f\u5e02 \u4ee5\u6771)": {
+        "accuracy": 0.9688375302761728,
+        "precision": 0.004978354978354979,
+        "recall": 0.71875,
+        "f1": 0.009888220120378332,
+        "auc": 0.9636847271847551
+      },
+      "Chattonella antiqua Chattonella ovata": {
+        "accuracy": 0.9883340889559551,
+        "precision": 0.0005817335660267597,
+        "recall": 0.14285714285714285,
+        "f1": 0.0011587485515643105,
+        "auc": 0.9661514977504259
+      },
+      "Karenia mikimotoi": {
+        "accuracy": 0.9899580457436731,
+        "precision": 0.0006756756756756757,
+        "recall": 0.16666666666666666,
+        "f1": 0.0013458950201884253,
+        "auc": 0.9660963137403513
+      },
+      "Chattonella": {
+        "accuracy": 0.9865339459598454,
+        "precision": 0.001005530417295123,
+        "recall": 0.4,
+        "f1": 0.0020060180541624875,
+        "auc": 0.9786274987480883
+      },
+      "Prorocentrum spp.": {
+        "accuracy": 0.9934428670032075,
+        "precision": 0.001034126163391934,
+        "recall": 0.25,
+        "f1": 0.0020597322348094747,
+        "auc": 0.9786134570357438
+      },
+      "Heterosigma akashiwo Chattonella antiqua Chattonella marina": {
+        "accuracy": 0.9939774119111905,
+        "precision": 0.0011248593925759281,
+        "recall": 0.3333333333333333,
+        "f1": 0.002242152466367713,
+        "auc": 0.9235713544556777
+      },
+      "Chattonella antiqua Chattonella marina Chattonella ovata": {
+        "accuracy": 0.9928337968696076,
+        "precision": 0.000945179584120983,
+        "recall": 0.3333333333333333,
+        "f1": 0.001885014137606032,
+        "auc": 0.7101677787251706
+      },
+      "Cochlodinium polykrikoides": {
+        "accuracy": 0.9959668687743612,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.7356605356828672
+      },
+      "Heterosigma akashiwo": {
+        "accuracy": 0.993869099177133,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.514210889601689
+      },
+      "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e": {
+        "accuracy": 0.9979089832515649,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.9839213934792319
+      },
+      "Chattonella Chattonella spp.": {
+        "accuracy": 0.9984841820334969,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.9969649600064964
+      },
+      "Chattonella spp.": {
+        "accuracy": 0.998680426323803,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.954890576150067
+      }
+    }
+  },
+  "model_performances": [
+    [
+      "\u770c\u6771\u90e8\u6d77\u57df(\u4e09\u539f\u5e02 \u4ee5\u6771)",
+      0.9636847271847551,
+      0.009888220120378332
+    ],
+    [
+      "Chattonella antiqua Chattonella ovata",
+      0.9661514977504259,
+      0.0011587485515643105
+    ],
+    [
+      "Karenia mikimotoi",
+      0.9660963137403513,
+      0.0013458950201884253
+    ],
+    [
+      "Chattonella",
+      0.9786274987480883,
+      0.0020060180541624875
+    ],
+    [
+      "Prorocentrum spp.",
+      0.9786134570357438,
+      0.0020597322348094747
+    ],
+    [
+      "Heterosigma akashiwo Chattonella antiqua Chattonella marina",
+      0.9235713544556777,
+      0.002242152466367713
+    ],
+    [
+      "Chattonella antiqua Chattonella marina Chattonella ovata",
+      0.7101677787251706,
+      0.001885014137606032
+    ],
+    [
+      "Cochlodinium polykrikoides",
+      0.7356605356828672,
+      0.0
+    ],
+    [
+      "Heterosigma akashiwo",
+      0.514210889601689,
+      0.0
+    ],
+    [
+      "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e",
+      0.9839213934792319,
+      0.0
+    ],
+    [
+      "Chattonella Chattonella spp.",
+      0.9969649600064964,
+      0.0
+    ],
+    [
+      "Chattonella spp.",
+      0.954890576150067,
+      0.0
+    ]
+  ]
+}

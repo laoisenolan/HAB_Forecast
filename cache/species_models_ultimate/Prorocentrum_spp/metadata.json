@@ -1,0 +1,94 @@
+{
+  "species": "Prorocentrum spp.",
+  "features": [
+    "ocean_temperature_hycom",
+    "sea_surface_elevation",
+    "ocean_current_u",
+    "ocean_current_v",
+    "wind_u",
+    "wind_v",
+    "chlor_a_mean",
+    "turbidity_index",
+    "ocean_salinity",
+    "precipitation",
+    "ocean_temperature_hycom_spatial",
+    "sea_surface_elevation_spatial",
+    "ocean_current_u_spatial",
+    "ocean_current_u_spatial_gradient",
+    "ocean_current_v_spatial",
+    "wind_u_spatial",
+    "wind_v_spatial",
+    "chlor_a_spatial",
+    "chlor_a_mean_spatial",
+    "turbidity_index_max",
+    "ocean_temperature_hycom_neighbor_max",
+    "sea_surface_elevation_neighbor_max",
+    "ocean_current_u_neighbor_max",
+    "ocean_current_v_neighbor_max",
+    "wind_u_neighbor_max",
+    "wind_v_neighbor_max",
+    "chlor_a_neighbor_max",
+    "chlor_a_mean_neighbor_max",
+    "turbidity_index_neighbor_max",
+    "turbidity_index_max_spatial"
+  ],
+  "feature_count": 30,
+  "metrics": {
+    "accuracy": 0.9934428670032075,
+    "precision": 0.001034126163391934,
+    "recall": 0.25,
+    "f1": 0.0020597322348094747,
+    "auc": 0.9786134570357438
+  },
+  "feature_importance": [
+    [
+      "sea_surface_elevation_neighbor_max",
+      "0.5250362"
+    ],
+    [
+      "sea_surface_elevation_spatial",
+      "0.1760184"
+    ],
+    [
+      "sea_surface_elevation",
+      "0.1315858"
+    ],
+    [
+      "ocean_temperature_hycom_spatial",
+      "0.043656338"
+    ],
+    [
+      "ocean_temperature_hycom",
+      "0.023157418"
+    ]
+  ],
+  "confusion_matrix": {
+    "TP": 1,
+    "TN": 146808,
+    "FP": 966,
+    "FN": 3
+  },
+  "training_info": {
+    "species": "Prorocentrum spp.",
+    "train_samples": 591111,
+    "test_samples": 147778,
+    "positive_samples": "21",
+    "positive_rate": 2.842104835773709e-05,
+    "model_params": {
+      "objective": "binary:logistic",
+      "eval_metric": "auc",
+      "random_state": 42,
+      "n_jobs": -1,
+      "verbosity": 0,
+      "n_estimators": 150,
+      "max_depth": 7,
+      "learning_rate": 0.04,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1,
+      "scale_pos_weight": 34770.23529411765
+    },
+    "created_at": "2025-08-12T19:49:22.252004"
+  }
+}

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 HAB Prediction System - Real-Time Risk Assessment</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .prediction-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .status-active { color: #27ae60; }
+        .status-coverage { color: #3498db; }
+        .status-models { color: #e74c3c; }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 1800px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+        }
+        
+        .map-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .controls-panel {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .control-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .control-group input,
+        .control-group select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .btn-danger:hover {
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .map-container {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ecf0f1;
+            min-height: 500px;
+        }
+        
+        .prediction-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow-y: auto;
+        }
+        
+        .location-input {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .location-input h3 {
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .coord-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .coord-inputs input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .prediction-results {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .risk-summary {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .risk-very-high {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .risk-high {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+        
+        .risk-medium {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: #2c3e50;
+        }
+        
+        .risk-low {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+        
+        .risk-very-low {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+        }
+        
+        .species-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .species-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #ecf0f1;
+            transition: background 0.2s;
+        }
+        
+        .species-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .species-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .species-risk {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .risk-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .risk-badge-very-high { background: #e74c3c; color: white; }
+        .risk-badge-high { background: #f39c12; color: white; }
+        .risk-badge-medium { background: #f1c40f; color: #2c3e50; }
+        .risk-badge-low { background: #27ae60; color: white; }
+        .risk-badge-very-low { background: #95a5a6; color: white; }
+        
+        .probability {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+            min-width: 50px;
+            text-align: right;
+        }
+        
+        .recommendations {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .recommendations h4 {
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .recommendations li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.9rem;
+        }
+        
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+        
+        .environmental-info {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .env-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .env-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .env-label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .env-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .legend h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #333;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr auto;
+                height: auto;
+            }
+            
+            .map-section {
+                height: 60vh;
+            }
+            
+            .prediction-panel {
+                height: auto;
+                max-height: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .main-grid {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .controls-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .prediction-status {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <i class="fas fa-satellite-dish"></i>
+            Real-Time HAB Prediction System
+        </h1>
+        <div class="subtitle">
+            AI-Powered Species-Specific Risk Assessment | Seto Inland Sea Region
+        </div>
+        
+        <div class="prediction-status">
+            <div class="status-item status-active">
+                <i class="fas fa-wifi"></i>
+                <span id="status-connection">System Online</span>
+            </div>
+            <div class="status-item status-coverage">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Coverage: 33.575°N-34.425°N, 132.575°E-133.425°E</span>
+            </div>
+            <div class="status-item status-models">
+                <i class="fas fa-brain"></i>
+                <span id="status-models">Loading models...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-grid">
+        <div class="map-section">
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label for="prediction-mode">Prediction Mode:</label>
+                    <select id="prediction-mode">
+                        <option value="current">Current Risk Assessment</option>
+                        <option value="species">Species-Specific Risk</option>
+                    </select>
+                </div>
+                <div class="control-group" id="species-control" style="display: none;">
+                    <label for="target-species">Target Species:</label>
+                    <select id="target-species">
+                        <!-- Populated by JavaScript -->
+                    </select>
+                </div>
+                <button class="btn" onclick="loadCurrentPredictions()">
+                    <i class="fas fa-sync-alt"></i> Update Predictions
+                </button>
+                <button class="btn btn-danger" onclick="clearMap()">
+                    <i class="fas fa-eraser"></i> Clear Map
+                </button>
+            </div>
+            
+            <div class="map-container" id="prediction-map"></div>
+            
+            <div class="legend">
+                <h4><i class="fas fa-info-circle"></i> Risk Levels</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>Very High Risk (≥70%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f39c12;"></div>
+                    <span>High Risk (50-70%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f1c40f;"></div>
+                    <span>Medium Risk (30-50%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #27ae60;"></div>
+                    <span>Low Risk (10-30%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #95a5a6;"></div>
+                    <span>Very Low Risk (<10%)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prediction-panel">
+            <div class="location-input">
+                <h3><i class="fas fa-crosshairs"></i> Point Prediction</h3>
+                <div class="coord-inputs">
+                    <input type="number" id="input-lat" placeholder="Latitude" step="0.001" min="33.575" max="34.425" value="34.0">
+                    <input type="number" id="input-lon" placeholder="Longitude" step="0.001" min="132.575" max="133.425" value="133.0">
+                </div>
+                <button class="btn" onclick="predictAtLocation()" style="width: 100%;">
+                    <i class="fas fa-search"></i> Analyze Location
+                </button>
+            </div>
+            
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Generating predictions...</p>
+            </div>
+            
+            <div class="prediction-results" id="prediction-results" style="display: none;">
+                <div class="risk-summary" id="risk-summary">
+                    <!-- Risk summary populated by JavaScript -->
+                </div>
+                
+                <div class="environmental-info">
+                    <h4><i class="fas fa-thermometer-half"></i> Environmental Conditions</h4>
+                    <div class="env-grid" id="environmental-data">
+                        <!-- Environmental data populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="species-predictions">
+                    <h4><i class="fas fa-microscope"></i> Species Risk Assessment</h4>
+                    <div class="species-list" id="species-list">
+                        <!-- Species predictions populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="recommendations" id="recommendations">
+                    <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+                    <ul id="recommendations-list">
+                        <!-- Recommendations populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global variables
+        let map;
+        let currentMarkers = [];
+        let modelsData = {};
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+        
+        async function initializeApp() {
+            try {
+                // Initialize map
+                initializeMap();
+                
+                // Load models data
+                await loadModelsData();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Load initial predictions
+                await loadCurrentPredictions();
+                
+                console.log('Prediction dashboard initialized successfully');
+            } catch (error) {
+                console.error('Error initializing dashboard:', error);
+                updateStatus('System Error', 'status-models');
+            }
+        }
+        
+        function initializeMap() {
+            // Coverage bounds
+            const bounds = [
+                [33.575, 132.575], // Southwest
+                [34.425, 133.425]  // Northeast
+            ];
+            
+            map = L.map('prediction-map').fitBounds(bounds);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add coverage area rectangle
+            L.rectangle(bounds, {
+                color: '#3498db',
+                weight: 2,
+                fillOpacity: 0.05,
+                dashArray: '5, 5'
+            }).addTo(map);
+            
+            // Add click handler for location prediction
+            map.on('click', function(e) {
+                const lat = e.latlng.lat;
+                const lon = e.latlng.lng;
+                
+                // Update input fields
+                document.getElementById('input-lat').value = lat.toFixed(3);
+                document.getElementById('input-lon').value = lon.toFixed(3);
+                
+                // Trigger prediction
+                predictAtLocation();
+            });
+        }
+        
+        async function loadModelsData() {
+            try {
+                const response = await fetch('/api/models/overview');
+                const data = await response.json();
+                
+                if (data.success) {
+                    modelsData = data;
+                    populateSpeciesSelector(data.models);
+                    updateStatus(`${data.models.length} Models Active`, 'status-models');
+                } else {
+                    throw new Error(data.error || 'Failed to load models');
+                }
+            } catch (error) {
+                console.error('Error loading models data:', error);
+                updateStatus('Models Error', 'status-models');
+            }
+        }
+        
+        function populateSpeciesSelector(models) {
+            const selector = document.getElementById('target-species');
+            selector.innerHTML = '';
+            
+            models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model.species;
+                option.textContent = `${model.species} (AUC: ${model.auc.toFixed(3)})`;
+                selector.appendChild(option);
+            });
+        }
+        
+        function setupEventListeners() {
+            // Prediction mode change
+            document.getElementById('prediction-mode').addEventListener('change', function() {
+                const mode = this.value;
+                const speciesControl = document.getElementById('species-control');
+                
+                if (mode === 'species') {
+                    speciesControl.style.display = 'block';
+                } else {
+                    speciesControl.style.display = 'none';
+                }
+            });
+            
+            // Enter key in coordinate inputs
+            ['input-lat', 'input-lon'].forEach(id => {
+                document.getElementById(id).addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        predictAtLocation();
+                    }
+                });
+            });
+        }
+        
+        async function loadCurrentPredictions() {
+            try {
+                updateStatus('Loading...', 'status-connection');
+                
+                const response = await fetch('/api/predictions/current');
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayPredictionsOnMap(data.predictions);
+                    updateStatus('System Online', 'status-connection');
+                } else {
+                    throw new Error(data.error || 'Failed to load predictions');
+                }
+            } catch (error) {
+                console.error('Error loading current predictions:', error);
+                updateStatus('Connection Error', 'status-connection');
+            }
+        }
+        
+        function displayPredictionsOnMap(predictions) {
+            // Clear existing markers
+            clearMap();
+            
+            predictions.forEach(pred => {
+                const color = getRiskColor(pred.overall_risk_level);
+                const radius = getRadiusByRisk(pred.max_risk_probability);
+                
+                const marker = L.circleMarker([pred.lat, pred.lon], {
+                    radius: radius,
+                    fillColor: color,
+                    color: '#333',
+                    weight: 1,
+                    opacity: 0.8,
+                    fillOpacity: 0.7
+                }).addTo(map);
+                
+                // Create popup content
+                const popupContent = createPopupContent(pred);
+                marker.bindPopup(popupContent);
+                
+                currentMarkers.push(marker);
+            });
+        }
+        
+        function createPopupContent(prediction) {
+            let content = `
+                <div style="min-width: 200px;">
+                    <h4 style="margin: 0 0 10px 0; color: #2c3e50;">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        ${prediction.lat.toFixed(3)}, ${prediction.lon.toFixed(3)}
+                    </h4>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <strong>Overall Risk:</strong> 
+                        <span style="color: ${getRiskColor(prediction.overall_risk_level)}; font-weight: bold;">
+                            ${prediction.overall_risk_level.replace('_', ' ').toUpperCase()}
+                        </span>
+                    </div>
+            `;
+            
+            if (prediction.max_risk_species) {
+                content += `
+                    <div style="margin-bottom: 10px;">
+                        <strong>Highest Risk Species:</strong><br>
+                        ${prediction.max_risk_species}<br>
+                        <strong>Probability:</strong> ${(prediction.max_risk_probability * 100).toFixed(1)}%
+                    </div>
+                `;
+            }
+            
+            // Environmental conditions
+            const env = prediction.environmental_conditions;
+            content += `
+                <div style="margin-bottom: 10px;">
+                    <strong>Environmental:</strong><br>
+                    ${env.sst ? `SST: ${env.sst.toFixed(1)}°C<br>` : ''}
+                    ${env.salinity ? `Salinity: ${env.salinity.toFixed(1)} PSU<br>` : ''}
+                    ${env.chlor_a ? `Chlor-a: ${env.chlor_a.toFixed(2)} mg/m³` : ''}
+                </div>
+                
+                <button onclick="analyzeLocation(${prediction.lat}, ${prediction.lon})" 
+                        style="width: 100%; padding: 8px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    <i class="fas fa-search"></i> Detailed Analysis
+                </button>
+            `;
+            
+            content += `</div>`;
+            
+            return content;
+        }
+        
+        async function predictAtLocation() {
+            const lat = parseFloat(document.getElementById('input-lat').value);
+            const lon = parseFloat(document.getElementById('input-lon').value);
+            
+            if (isNaN(lat) || isNaN(lon)) {
+                alert('Please enter valid coordinates');
+                return;
+            }
+            
+            await analyzeLocation(lat, lon);
+        }
+        
+        async function analyzeLocation(lat, lon) {
+            try {
+                // Show loading
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('prediction-results').style.display = 'none';
+                
+                // Update input fields
+                document.getElementById('input-lat').value = lat.toFixed(3);
+                document.getElementById('input-lon').value = lon.toFixed(3);
+                
+                const response = await fetch(`/api/predictions/location?lat=${lat}&lon=${lon}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayLocationAnalysis(data.analysis);
+                    
+                    // Add marker to map
+                    L.marker([lat, lon], {
+                        icon: L.divIcon({
+                            className: 'analysis-marker',
+                            html: '<div style="background: #e74c3c; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid white;">📍</div>',
+                            iconSize: [24, 24]
+                        })
+                    }).addTo(map);
+                } else {
+                    throw new Error(data.error || 'Failed to analyze location');
+                }
+            } catch (error) {
+                console.error('Error analyzing location:', error);
+                alert('Error analyzing location: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        function displayLocationAnalysis(analysis) {
+            // Update risk summary
+            const riskSummary = document.getElementById('risk-summary');
+            const highestRisk = analysis.highest_risk;
+            
+            riskSummary.className = `risk-summary risk-${highestRisk.risk_level.replace('_', '-')}`;
+            riskSummary.innerHTML = `
+                <div style="font-size: 1.2rem;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    ${highestRisk.risk_level.replace('_', ' ').toUpperCase()} RISK
+                </div>
+                <div style="font-size: 0.9rem; margin-top: 0.5rem;">
+                    ${highestRisk.species ? `Primary Threat: ${highestRisk.species}` : 'No significant threats detected'}
+                </div>
+                <div style="font-size: 0.8rem; margin-top: 0.25rem;">
+                    Probability: ${(highestRisk.probability * 100).toFixed(1)}% | Confidence: ${highestRisk.confidence}
+                </div>
+            `;
+            
+            // Update environmental data
+            const envData = document.getElementById('environmental-data');
+            const env = analysis.environmental_conditions;
+            
+            envData.innerHTML = `
+                <div class="env-item">
+                    <span class="env-label">Sea Temperature:</span>
+                    <span class="env-value">${env.sea_surface_temperature ? env.sea_surface_temperature.toFixed(1) + '°C' : 'N/A'}</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-label">Salinity:</span>
+                    <span class="env-value">${env.ocean_salinity ? env.ocean_salinity.toFixed(1) + ' PSU' : 'N/A'}</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-label">Chlorophyll-a:</span>
+                    <span class="env-value">${env.chlorophyll_a ? env.chlorophyll_a.toFixed(2) + ' mg/m³' : 'N/A'}</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-label">Turbidity:</span>
+                    <span class="env-value">${env.turbidity_index ? env.turbidity_index.toFixed(2) : 'N/A'}</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-label">Current U:</span>
+                    <span class="env-value">${env.ocean_current_u ? env.ocean_current_u.toFixed(3) + ' m/s' : 'N/A'}</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-label">Current V:</span>
+                    <span class="env-value">${env.ocean_current_v ? env.ocean_current_v.toFixed(3) + ' m/s' : 'N/A'}</span>
+                </div>
+            `;
+            
+            // Update species predictions
+            const speciesList = document.getElementById('species-list');
+            const speciesAssessments = Object.entries(analysis.species_risk_assessment);
+            
+            speciesList.innerHTML = speciesAssessments
+                .sort((a, b) => b[1].probability - a[1].probability)
+                .map(([species, assessment]) => `
+                    <div class="species-item">
+                        <div class="species-name">${species}</div>
+                        <div class="species-risk">
+                            <span class="risk-badge risk-badge-${assessment.risk_level.replace('_', '-')}">${assessment.risk_level.replace('_', ' ').toUpperCase()}</span>
+                            <span class="probability">${(assessment.probability * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                `).join('');
+            
+            // Update recommendations
+            const recommendationsList = document.getElementById('recommendations-list');
+            recommendationsList.innerHTML = analysis.recommendations
+                .map(rec => `<li>${rec}</li>`)
+                .join('');
+            
+            // Show results
+            document.getElementById('prediction-results').style.display = 'block';
+        }
+        
+        function clearMap() {
+            currentMarkers.forEach(marker => {
+                map.removeLayer(marker);
+            });
+            currentMarkers = [];
+            
+            // Remove analysis markers
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Marker && layer.options.icon && layer.options.icon.options.className === 'analysis-marker') {
+                    map.removeLayer(layer);
+                }
+            });
+        }
+        
+        function getRiskColor(riskLevel) {
+            const colors = {
+                'very_high': '#e74c3c',
+                'high': '#f39c12',
+                'medium': '#f1c40f',
+                'low': '#27ae60',
+                'very_low': '#95a5a6'
+            };
+            return colors[riskLevel] || '#95a5a6';
+        }
+        
+        function getRadiusByRisk(probability) {
+            if (probability >= 0.7) return 12;
+            if (probability >= 0.5) return 10;
+            if (probability >= 0.3) return 8;
+            if (probability >= 0.1) return 6;
+            return 4;
+        }
+        
+        function updateStatus(message, elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+            }
+        }
+        
+        // Auto-refresh predictions every 5 minutes
+        setInterval(loadCurrentPredictions, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

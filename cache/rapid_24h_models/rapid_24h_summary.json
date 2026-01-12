@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-08-12T18:50:37.217072",
+  "duration_seconds": 5.439448,
+  "coverage_area": {
+    "lat_min": 33.575,
+    "lat_max": 34.425,
+    "lon_min": 132.575,
+    "lon_max": 133.425
+  },
+  "target_bays": [
+    "Hiuchi-nada",
+    "Aki-nada",
+    "Iyo-nada",
+    "Hiroshima",
+    "Hiuchi",
+    "Iyo",
+    "Aki"
+  ],
+  "environmental_samples": 7843,
+  "hab_events": 72,
+  "results": {
+    "error": "No positive samples"
+  }
+}

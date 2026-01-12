@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "total_species": 7,
+    "evaluation_date": "2025-08-11T11:01:34.029609"
+  },
+  "species_performance": {
+    "Karenia mikimotoi": {
+      "f1_score": 0.9939393939393939,
+      "positive_samples": 416,
+      "negative_samples": 2040,
+      "class_balance_ratio": 0.16938110749185667
+    },
+    "Heterosigma akashiwo": {
+      "f1_score": 0.9473684210526315,
+      "positive_samples": 473,
+      "negative_samples": 1983,
+      "class_balance_ratio": 0.19258957654723127
+    },
+    "Chattonella antiqua": {
+      "f1_score": 1.0,
+      "positive_samples": 231,
+      "negative_samples": 2225,
+      "class_balance_ratio": 0.09405537459283388
+    },
+    "Cochlodinium polykrikoides": {
+      "f1_score": 0.9719626168224299,
+      "positive_samples": 265,
+      "negative_samples": 2191,
+      "class_balance_ratio": 0.10789902280130294
+    },
+    "Noctiluca scintillans": {
+      "f1_score": 0.7272727272727273,
+      "positive_samples": 79,
+      "negative_samples": 2377,
+      "class_balance_ratio": 0.03216612377850163
+    },
+    "Prorocentrum minimum": {
+      "f1_score": 1.0,
+      "positive_samples": 29,
+      "negative_samples": 2427,
+      "class_balance_ratio": 0.011807817589576547
+    },
+    "Skeletonema spp.": {
+      "f1_score": 0.8571428571428571,
+      "positive_samples": 178,
+      "negative_samples": 2278,
+      "class_balance_ratio": 0.0724755700325733
+    }
+  }
+}

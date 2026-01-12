@@ -1,0 +1,782 @@
+{
+  "total_records": 739266,
+  "positive_records": "398",
+  "positive_rate": 0.0005383718445052255,
+  "successful_batches": 96,
+  "failed_batches": 0,
+  "date_range": "2017-01-01 to 2024-12-31",
+  "grid_resolution": 0.05,
+  "batch_details": [
+    {
+      "month": "2017-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-07",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-08",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-09",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2017-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2017-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-07",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-08",
+      "total_records": 7843,
+      "positive_records": "13",
+      "positive_rate": 0.0016575290067576182,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-09",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2018-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2018-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-07",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-08",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-09",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2019-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2019-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-02",
+      "total_records": 7337,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-04",
+      "total_records": 7590,
+      "positive_records": "1",
+      "positive_rate": 0.00013175230566534913,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-07",
+      "total_records": 7843,
+      "positive_records": "2",
+      "positive_rate": 0.0002550044625780951,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-08",
+      "total_records": 7843,
+      "positive_records": "31",
+      "positive_rate": 0.003952569169960474,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-09",
+      "total_records": 7590,
+      "positive_records": "14",
+      "positive_rate": 0.001844532279314888,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2020-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2020-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-01",
+      "total_records": 7843,
+      "positive_records": "2",
+      "positive_rate": 0.0002550044625780951,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-04",
+      "total_records": 7590,
+      "positive_records": "12",
+      "positive_rate": 0.0015810276679841897,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-05",
+      "total_records": 7843,
+      "positive_records": "13",
+      "positive_rate": 0.0016575290067576182,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-06",
+      "total_records": 7590,
+      "positive_records": "46",
+      "positive_rate": 0.006060606060606061,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-07",
+      "total_records": 7843,
+      "positive_records": "55",
+      "positive_rate": 0.0070126227208976155,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-08",
+      "total_records": 7843,
+      "positive_records": "49",
+      "positive_rate": 0.006247609333163331,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-09",
+      "total_records": 7590,
+      "positive_records": "24",
+      "positive_rate": 0.0031620553359683794,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-10",
+      "total_records": 7843,
+      "positive_records": "5",
+      "positive_rate": 0.0006375111564452378,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-11",
+      "total_records": 7590,
+      "positive_records": "30",
+      "positive_rate": 0.003952569169960474,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2021-12",
+      "total_records": 7843,
+      "positive_records": "9",
+      "positive_rate": 0.001147520081601428,
+      "dataset_path": "cache\\batch_processing\\batches\\2021-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-07",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-08",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-09",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2022-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2022-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-02",
+      "total_records": 7084,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-06",
+      "total_records": 7590,
+      "positive_records": "25",
+      "positive_rate": 0.0032938076416337285,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-07",
+      "total_records": 7843,
+      "positive_records": "31",
+      "positive_rate": 0.003952569169960474,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-08",
+      "total_records": 7843,
+      "positive_records": "31",
+      "positive_rate": 0.003952569169960474,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-09",
+      "total_records": 7590,
+      "positive_records": "5",
+      "positive_rate": 0.0006587615283267457,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2023-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2023-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-01",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-01\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-02",
+      "total_records": 7337,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-02\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-03",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-03\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-04",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-04\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-05",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-05\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-06",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-06\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-07",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-07\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-08",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-08\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-09",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-09\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-10",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-10\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-11",
+      "total_records": 7590,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-11\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    },
+    {
+      "month": "2024-12",
+      "total_records": 7843,
+      "positive_records": "0",
+      "positive_rate": 0.0,
+      "dataset_path": "cache\\batch_processing\\batches\\2024-12\\spatial_temporal_training_dataset.parquet",
+      "status": "SUCCESS"
+    }
+  ],
+  "total_processing_time_minutes": 64.03128188333334,
+  "improvement_factor": 341.771216080402,
+  "original_positive_rate": 18.4
+}

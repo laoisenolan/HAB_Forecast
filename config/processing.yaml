@@ -1,0 +1,137 @@
+# Data Processing Configuration for Phase 3: Model Development
+# HAB Forecasting System - Seto Inland Sea
+
+# Spatial processing settings
+spatial:
+  # Target resolution for all datasets
+  target_resolution_km: 2.0
+  
+  # Seto Inland Sea boundaries
+  region_bounds:
+    north: 35.0
+    south: 34.0
+    east: 135.0
+    west: 132.0
+  
+  # Interpolation method for regridding
+  interpolation_method: "bilinear"
+  
+  # Spatial mask settings
+  mask:
+    land_threshold: 0.5  # Fraction of land pixels to mask out
+    ocean_threshold: 0.1  # Minimum ocean fraction to keep
+
+# Temporal processing settings
+temporal:
+  # Target temporal resolution
+  target_resolution: "weekly"
+  
+  # Aggregation method
+  aggregation_method: "mean"
+  
+  # Minimum valid days for weekly aggregation
+  min_valid_days: 4
+  
+  # Time series settings
+  time_series:
+    start_date: "2002-01-01"
+    end_date: "2024-12-31"
+    frequency: "W"  # Weekly frequency
+
+# Data quality settings
+quality:
+  # Missing data thresholds
+  max_missing_fraction: 0.5  # Maximum fraction of missing data
+  
+  # Outlier detection
+  outlier_threshold: 3.0  # Standard deviations for outlier detection
+  
+  # Value range limits
+  value_ranges:
+    sst:
+      min: -5.0
+      max: 40.0
+    chlorophyll:
+      min: 0.01
+      max: 100.0
+    mld:
+      min: 0.0
+      max: 1000.0
+    wind_speed:
+      min: 0.0
+      max: 50.0
+
+# Feature engineering settings
+features:
+  # Anomaly computation
+  anomaly:
+    climatology_period: "2002-2020"  # Base period for climatology
+    window_size: 5  # Weeks for rolling statistics
+    
+  # Lag features
+  lags:
+    weekly_lags: [1, 2, 3, 4]  # Previous weeks
+    monthly_lags: [4, 8, 12]   # Previous months
+    
+  # Spatial features
+  spatial:
+    gradient_kernel_size: 3
+    spatial_average_radius: 2  # Grid cells
+    
+  # Interaction features
+  interactions:
+    - ["sst", "chlorophyll"]
+    - ["mld", "current_speed"]
+    - ["wind_speed", "chlorophyll"]
+
+# Data sources integration
+data_sources:
+  # Priority order for data sources
+  priority_order:
+    - "copernicus_marine"
+    - "erddap"
+    - "google_earth_engine"
+  
+  # Variable mapping
+  variable_mapping:
+    sea_surface_temperature: ["thetao", "sst"]
+    mixed_layer_depth: ["mlotst", "mld"]
+    chlorophyll_a: ["chl", "chlorophyll"]
+    wind_u: ["uo", "wind_u"]
+    wind_v: ["vo", "wind_v"]
+    precipitation: ["pratesfc", "precipitation"]
+
+# Output settings
+output:
+  # File format
+  format: "netcdf4"
+  
+  # Compression
+  compression: "lzw"
+  compression_level: 6
+  
+  # Metadata
+  include_metadata: true
+  
+  # Directory structure
+  directories:
+    processed: "data/processed"
+    features: "data/features"
+    labels: "data/labels"
+    models: "models"
+    results: "results"
+
+# Processing pipeline settings
+pipeline:
+  # Chunking for large datasets
+  chunk_size: "100MB"
+  
+  # Parallel processing
+  n_jobs: 4
+  
+  # Memory management
+  memory_limit: "8GB"
+  
+  # Progress tracking
+  verbose: true
+  save_intermediate: true 

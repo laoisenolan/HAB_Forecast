@@ -1,0 +1,31 @@
+{
+  "species": "Chattonella antiqua Chattonella marina Chattonella ovata",
+  "timestamp": "2025-08-12T02:24:23.333414",
+  "model_type": "XGBoost_SpeciesSpecific",
+  "train_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "auc": 1.0,
+    "ap": 1.0
+  },
+  "test_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "auc": 1.0,
+    "ap": 0.9999999999999999
+  },
+  "cv_scores": [
+    0.9333333333333333,
+    0.9523809523809523,
+    0.9545454545454546,
+    0.9545454545454546,
+    0.9130434782608695
+  ],
+  "cv_mean": 0.9415697346132129,
+  "cv_std": 0.01634139928319632,
+  "n_features": 50
+}

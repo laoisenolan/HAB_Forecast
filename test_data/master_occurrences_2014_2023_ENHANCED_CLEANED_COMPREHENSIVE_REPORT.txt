@@ -1,0 +1,130 @@
+============================================================
+COMPREHENSIVE HAB DATA CLEANING REPORT
+============================================================
+
+Generated: 2025-08-11 11:55:01.600990
+Input file: master_occurrences_2014_2023.csv
+Output file: test_data/master_occurrences_2014_2023_ENHANCED_CLEANED.csv
+Processing time: 0.87 seconds
+
+PROCESSING SUMMARY
+--------------------
+Total rows processed: 2200
+Final clean rows: 2183
+Total issues found: 2200
+Quality issues detected: 26
+
+ISSUES BY CATEGORY
+--------------------
+  Column Misalignment: 516
+  Missing Data: 180
+  Data Type Error: 21
+  Duplicate Entry: 17
+
+FIXES BY YEAR RANGE
+--------------------
+  2014-2019: 1624 rows
+  2020-2021: 516 rows
+  2022-2023: 60 rows
+
+DATA QUALITY METRICS
+--------------------
+  Total rows: 2183
+  Valid years: 2183
+  Valid start dates: 762
+  Valid end dates: 572
+  Valid species: 2183
+  Valid cell counts: 1036
+  Valid locations: 2183
+  Missing data percentage: 22.41%
+  Duplicate entries: 0
+  Date range: 2014-2022
+  Unique species: 387
+  Unique locations: 463
+
+YEAR-WISE EVENT DISTRIBUTION
+------------------------------
+  2014: 319 events
+  2015: 280 events
+  2016: 284 events
+  2017: 242 events
+  2018: 276 events
+  2019: 206 events
+  2020: 271 events
+  2021: 245 events
+  2022: 60 events
+
+TOP 15 SPECIES BY FREQUENCY
+------------------------------
+  無: 356 events
+  Karenia mikimotoi: 159 events
+  Heterosigma akashiwo: 143 events
+  Noctiluca scintillans: 63 events
+  Unidentified: 60 events
+  Skeletonema spp.: 50 events
+  Cochlodinium polykrikoides: 29 events
+  Mesodinium rubrum: 29 events
+  Chattonella spp.: 25 events
+  大阪府: 25 events
+  Eucampia zodiacus: 19 events
+  Myrionecta rubra (Mesodinium rubrum): 18 events
+  Chattonella antiqua Chattonella marina Chattonella ovata: 14 events
+  浦ノ内湾: 13 events
+  高知県: 13 events
+
+TOP 15 LOCATIONS BY FREQUENCY
+------------------------------
+  大分県: 184 events
+  大阪府: 141 events
+  高知県: 111 events
+  Karenia mikimotoi: 97 events
+  香川県: 72 events
+  山口県: 69 events
+  Heterosigma akashiwo: 69 events
+  徳島県: 52 events
+  浦ノ内湾: 51 events
+  和歌山県: 45 events
+  愛媛県: 38 events
+  Skeletonema spp.: 38 events
+  兵庫県: 33 events
+  Noctiluca scintillans: 33 events
+
+QUALITY ISSUES DETECTED
+-------------------------
+  Unusually high cell count: 1333260.0
+  Unusually high cell count: 31038169.0
+  Unusually high cell count: 1327008.0
+  Unusually high cell count: 11970074.0
+  Unusually high cell count: 14323169.0
+  Unusually high cell count: 2635017.0
+  Unusually high cell count: 14323169.0
+  Unusually high cell count: 16501043.0
+  Unusually high cell count: 11431560.0
+  Unusually high cell count: 16501043.0
+  Unusually high cell count: 3151125.0
+  Unusually high cell count: 3840520240.0
+  Unusually high cell count: 3151125.0
+  Unusually high cell count: 7308052.0
+  Unusually high cell count: 4046011.0
+  Unusually high cell count: 6220025.0
+  Unusually high cell count: 8455050.0
+  Unusually high cell count: 5640021.0
+  Unusually high cell count: 1680003.0
+  Unusually high cell count: 11431560.0
+  ... and 6 more issues
+
+CONFIGURATION USED
+--------------------
+  create_backup: True
+  validate_data: True
+  check_duplicates: True
+  fix_encoding_issues: True
+  progress_reporting: True
+  detailed_logging: True
+  cell_count_threshold: 1000000
+  duration_threshold: 365
+
+============================================================
+Report completed successfully!
+Data is now ready for machine learning training.
+============================================================

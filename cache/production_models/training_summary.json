@@ -1,0 +1,7 @@
+{
+  "training_timestamp": "2025-08-12T02:09:30.387978",
+  "data_path": "cache/batch_processing/final_training_dataset.parquet",
+  "total_time_minutes": 0.00796572764714559,
+  "models_trained": 0,
+  "species_performance": {}
+}

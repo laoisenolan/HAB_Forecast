@@ -1,0 +1,56 @@
+{
+  "approach": "conservative_temporal_split",
+  "evaluation_date": "2025-08-11T11:17:46.136726",
+  "total_species": 4,
+  "data_summary": {
+    "total_records": 1076,
+    "temporal_range": "2017-01-01 00:00:00 to 2019-12-17 00:00:00",
+    "features_used": 30
+  },
+  "species_performance": {
+    "Karenia mikimotoi": {
+      "f1_score": 0.784452296819788,
+      "precision": 0.7872340425531915,
+      "recall": 0.7816901408450704,
+      "train_positive": 273,
+      "test_positive": 142,
+      "train_total": 753,
+      "test_total": 323,
+      "class_balance_train": 0.36254980079681276,
+      "class_balance_test": 0.43962848297213625
+    },
+    "Heterosigma akashiwo": {
+      "f1_score": 0.6666666666666666,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "train_positive": 294,
+      "test_positive": 177,
+      "train_total": 753,
+      "test_total": 323,
+      "class_balance_train": 0.3904382470119522,
+      "class_balance_test": 0.5479876160990712
+    },
+    "Chattonella antiqua": {
+      "f1_score": 0.8275862068965517,
+      "precision": 0.7407407407407407,
+      "recall": 0.9375,
+      "train_positive": 166,
+      "test_positive": 64,
+      "train_total": 753,
+      "test_total": 323,
+      "class_balance_train": 0.2204515272244356,
+      "class_balance_test": 0.19814241486068113
+    },
+    "Cochlodinium polykrikoides": {
+      "f1_score": 0.6923076923076923,
+      "precision": 0.9,
+      "recall": 0.5625,
+      "train_positive": 153,
+      "test_positive": 112,
+      "train_total": 753,
+      "test_total": 323,
+      "class_balance_train": 0.20318725099601595,
+      "class_balance_test": 0.34674922600619196
+    }
+  }
+}

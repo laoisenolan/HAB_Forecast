@@ -1,0 +1,94 @@
+{
+  "species": "Heterosigma akashiwo Chattonella antiqua Chattonella marina",
+  "features": [
+    "sst",
+    "sst_mean",
+    "ocean_temperature_hycom",
+    "ocean_current_v",
+    "wind_v",
+    "turbidity_index",
+    "ocean_salinity",
+    "sst_spatial",
+    "sst_mean_spatial",
+    "ocean_temperature_hycom_spatial",
+    "sea_surface_elevation_spatial_gradient",
+    "ocean_current_u_spatial_gradient",
+    "ocean_current_v_spatial",
+    "ocean_current_v_spatial_gradient",
+    "wind_v_spatial",
+    "chlor_a_spatial_gradient",
+    "chlor_a_mean_spatial_gradient",
+    "sst_neighbor_max",
+    "sst_mean_neighbor_max",
+    "ocean_temperature_hycom_neighbor_max",
+    "ocean_current_u_neighbor_max",
+    "ocean_current_v_neighbor_max",
+    "wind_v_neighbor_max",
+    "Rrs_443_neighbor_max",
+    "Rrs_443_mean_neighbor_max",
+    "Rrs_555_neighbor_max",
+    "Rrs_555_mean_neighbor_max",
+    "Rrs_667_neighbor_max",
+    "Rrs_667_mean_neighbor_max",
+    "turbidity_index_neighbor_max"
+  ],
+  "feature_count": 30,
+  "metrics": {
+    "accuracy": 0.9939774119111905,
+    "precision": 0.0011248593925759281,
+    "recall": 0.3333333333333333,
+    "f1": 0.002242152466367713,
+    "auc": 0.9235713544556777
+  },
+  "feature_importance": [
+    [
+      "ocean_salinity",
+      "0.25865087"
+    ],
+    [
+      "turbidity_index_neighbor_max",
+      "0.11857429"
+    ],
+    [
+      "ocean_temperature_hycom_spatial",
+      "0.1116984"
+    ],
+    [
+      "ocean_temperature_hycom",
+      "0.065441646"
+    ],
+    [
+      "ocean_temperature_hycom_neighbor_max",
+      "0.057212964"
+    ]
+  ],
+  "confusion_matrix": {
+    "TP": 1,
+    "TN": 146886,
+    "FP": 888,
+    "FN": 2
+  },
+  "training_info": {
+    "species": "Heterosigma akashiwo Chattonella antiqua Chattonella marina",
+    "train_samples": 591106,
+    "test_samples": 147777,
+    "positive_samples": "15",
+    "positive_rate": 2.0300913676454863e-05,
+    "model_params": {
+      "objective": "binary:logistic",
+      "eval_metric": "auc",
+      "random_state": 42,
+      "n_jobs": -1,
+      "verbosity": 0,
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.03,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1,
+      "scale_pos_weight": 49257.833333333336
+    },
+    "created_at": "2025-08-12T19:49:30.359441"
+  }
+}

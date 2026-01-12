@@ -1,0 +1,27 @@
+{
+  "total_records": 739266,
+  "positive_records": 25208,
+  "positive_rate": 0.03409868707609981,
+  "date_range": {
+    "start": "2017-01-01T00:00:00",
+    "end": "2024-12-31T00:00:00"
+  },
+  "species_distribution": {
+    "Chattonella spp.": 8218,
+    "Chattonella antiqua Chattonella marina Chattonella ovata": 8027,
+    "Karenia mikimotoi": 3090,
+    "Cochlodinium polykrikoides": 2184,
+    "Chattonella antiqua Chattonella ovata": 1890,
+    "Heterosigma akashiwo Chattonella antiqua Chattonella marina": 819,
+    "\u770c\u897f\u90e8\u6d77\u57df(\u5449\u5e02\u4ee5 \u897f)": 350,
+    "Noctiluca scintillans": 315,
+    "Chattonell ovata Chattonella antiqua Chattonella marina": 315
+  },
+  "yearly_distribution": {
+    "2017": 6681,
+    "2018": 4101,
+    "2019": 335,
+    "2020": 6685,
+    "2021": 7406
+  }
+}

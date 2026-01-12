@@ -1,0 +1,222 @@
+# Feature Engineering Configuration for Phase 3: Model Development
+# HAB Forecasting System - Seto Inland Sea
+
+# Feature categories
+feature_categories:
+  environmental:
+    description: "Direct environmental variables"
+    variables:
+      - "sea_surface_temperature"
+      - "mixed_layer_depth"
+      - "chlorophyll_a"
+      - "wind_speed"
+      - "wind_direction"
+      - "precipitation"
+      
+  derived:
+    description: "Computed features from base variables"
+    variables:
+      - "sst_anomaly"
+      - "chlorophyll_anomaly"
+      - "wind_speed_anomaly"
+      - "mld_anomaly"
+      
+  temporal:
+    description: "Time-based features"
+    variables:
+      - "sst_lag_1w"
+      - "sst_lag_2w"
+      - "sst_lag_3w"
+      - "sst_lag_4w"
+      - "chlorophyll_lag_1w"
+      - "chlorophyll_lag_2w"
+      - "chlorophyll_lag_3w"
+      - "chlorophyll_lag_4w"
+      - "sst_rolling_mean_5w"
+      - "sst_rolling_std_5w"
+      - "chlorophyll_rolling_mean_5w"
+      - "chlorophyll_rolling_std_5w"
+      
+  spatial:
+    description: "Spatial features"
+    variables:
+      - "sst_spatial_mean"
+      - "sst_spatial_std"
+      - "chlorophyll_spatial_mean"
+      - "chlorophyll_spatial_std"
+      - "sst_lat_gradient"
+      - "sst_lon_gradient"
+      - "chlorophyll_lat_gradient"
+      - "chlorophyll_lon_gradient"
+      
+  interaction:
+    description: "Interaction features between variables"
+    variables:
+      - "sst_chlorophyll_interaction"
+      - "mld_current_interaction"
+      - "wind_chlorophyll_interaction"
+      - "sst_mld_interaction"
+      
+  seasonal:
+    description: "Seasonal and cyclical features"
+    variables:
+      - "week_of_year"
+      - "month"
+      - "season"
+      - "sst_climatological_mean"
+      - "chlorophyll_climatological_mean"
+      - "sst_seasonal_anomaly"
+      - "chlorophyll_seasonal_anomaly"
+
+# Feature computation settings
+computation:
+  # Anomaly computation
+  anomaly:
+    climatology_period: "2002-2020"  # Base period for climatology
+    method: "climatological_mean"    # Method for anomaly computation
+    window_size: 5                   # Weeks for rolling statistics
+    
+  # Lag features
+  lags:
+    weekly_lags: [1, 2, 3, 4]        # Previous weeks
+    monthly_lags: [4, 8, 12]         # Previous months
+    max_lag_weeks: 12                # Maximum lag period
+    
+  # Rolling statistics
+  rolling:
+    window_sizes: [3, 5, 8]          # Rolling window sizes in weeks
+    statistics: ["mean", "std", "min", "max"]
+    center: true                     # Center the rolling window
+    
+  # Spatial features
+  spatial:
+    gradient_kernel_size: 3          # Kernel size for gradient computation
+    spatial_average_radius: 2        # Grid cells for spatial averaging
+    spatial_statistics: ["mean", "std", "min", "max"]
+    
+  # Interaction features
+  interactions:
+    pairs:
+      - ["sea_surface_temperature", "chlorophyll_a"]
+      - ["mixed_layer_depth", "current_speed"]
+      - ["wind_speed", "chlorophyll_a"]
+      - ["sea_surface_temperature", "mixed_layer_depth"]
+    methods: ["multiplication", "ratio", "difference"]
+    
+  # Seasonal features
+  seasonal:
+    include_cyclical: true           # Include cyclical encoding
+    cyclical_encoding: "sin_cos"     # Method for cyclical encoding
+    seasonal_periods: ["weekly", "monthly", "quarterly"]
+
+# Feature selection
+selection:
+  # Correlation threshold for feature removal
+  correlation_threshold: 0.95
+  
+  # Variance threshold for feature removal
+  variance_threshold: 0.01
+  
+  # Feature importance methods
+  importance_methods:
+    - "correlation"
+    - "mutual_information"
+    - "random_forest"
+    - "xgboost"
+    
+  # Minimum feature importance threshold
+  min_importance_threshold: 0.01
+
+# Feature scaling and normalization
+scaling:
+  # Scaling methods
+  methods:
+    - "standard_scaler"      # StandardScaler (z-score normalization)
+    - "minmax_scaler"        # MinMaxScaler (0-1 scaling)
+    - "robust_scaler"        # RobustScaler (robust to outliers)
+    
+  # Default scaling method
+  default_method: "standard_scaler"
+  
+  # Variables to exclude from scaling
+  exclude_variables:
+    - "week_of_year"
+    - "month"
+    - "season"
+    - "year"
+
+# Feature engineering pipeline
+pipeline:
+  # Processing order
+  processing_order:
+    1: "load_data"
+    2: "compute_anomalies"
+    3: "create_lag_features"
+    4: "compute_rolling_statistics"
+    5: "extract_spatial_features"
+    6: "create_interaction_features"
+    7: "add_seasonal_features"
+    8: "handle_missing_values"
+    9: "scale_features"
+    10: "select_features"
+    11: "save_features"
+    
+  # Parallel processing
+  parallel:
+    enabled: true
+    n_jobs: 4
+    chunk_size: 1000
+    
+  # Memory management
+  memory:
+    chunk_processing: true
+    chunk_size: "100MB"
+    max_memory_usage: "8GB"
+
+# Output settings
+output:
+  # Feature dataset format
+  format: "netcdf4"
+  
+  # Compression settings
+  compression:
+    enabled: true
+    method: "lzw"
+    level: 6
+    
+  # Metadata
+  include_metadata: true
+  include_feature_descriptions: true
+  
+  # Directory structure
+  directories:
+    features: "data/features"
+    feature_reports: "reports/features"
+    feature_plots: "plots/features"
+    
+  # File naming
+  naming:
+    prefix: "hab_features"
+    include_timestamp: true
+    include_version: true
+
+# Feature validation
+validation:
+  # Data quality checks
+  quality_checks:
+    - "missing_data_check"
+    - "outlier_check"
+    - "correlation_check"
+    - "variance_check"
+    
+  # Validation thresholds
+  thresholds:
+    max_missing_fraction: 0.3
+    max_correlation: 0.95
+    min_variance: 0.001
+    
+  # Validation reports
+  reports:
+    generate_summary: true
+    generate_plots: true
+    save_reports: true 

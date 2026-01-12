@@ -1,0 +1,34 @@
+{
+  "created_at": "2025-08-12T19:39:10.770680",
+  "total_samples": 739266,
+  "hab_positive_samples": 398,
+  "species_labeled_samples": 339,
+  "unique_species": 14,
+  "species_distribution": {
+    "none": 738927,
+    "\u770c\u6771\u90e8\u6d77\u57df(\u4e09\u539f\u5e02 \u4ee5\u6771)": 158,
+    "Chattonella antiqua Chattonella ovata": 34,
+    "Karenia mikimotoi": 30,
+    "Chattonella": 27,
+    "Prorocentrum spp.": 21,
+    "Heterosigma akashiwo Chattonella antiqua Chattonella marina": 15,
+    "Chattonella antiqua Chattonella marina Chattonella ovata": 13,
+    "Cochlodinium polykrikoides": 12,
+    "Heterosigma akashiwo": 9,
+    "\u56fd\u6771\u5e02\u3001\u59eb\u5cf6\u6751\u6cbf\u5cb8 \u53ca\u3073\u5225\u5e9c\u6e7e": 7,
+    "Chattonella Chattonella spp.": 6,
+    "Chattonella spp.": 5,
+    "Chattonell ovata Chattonella antiqua Chattonella marina": 1,
+    "Noctiluca scintillans": 1
+  },
+  "date_range": {
+    "start": "2017-01-01 00:00:00",
+    "end": "2024-12-31 00:00:00"
+  },
+  "spatial_bounds": {
+    "lat_min": 33.575,
+    "lat_max": 34.425,
+    "lon_min": 132.575,
+    "lon_max": 133.425
+  }
+}

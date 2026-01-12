@@ -1,0 +1,26 @@
+{
+  "total_records": 147561,
+  "positive_records": 385,
+  "positive_rate": 0.0026090904778362845,
+  "improvement_factor": 70.52265974025974,
+  "processing_time_minutes": 10.977846666666666,
+  "grid_cells": 101,
+  "date_range_days": 1461,
+  "quality_score": "FAIR",
+  "records_per_minute": 13441.70714718187,
+  "sampling_strategy": {
+    "temporal_sampling": {
+      "approach": "full_coverage",
+      "date_range": "2020-01-01 to 2023-12-31"
+    },
+    "spatial_sampling": {
+      "hab_positive_cells": "all",
+      "hab_negative_cells": 0.3,
+      "regional_balance": true,
+      "coastal_preference": 1.5
+    },
+    "target_records": 2000000,
+    "expected_positive_rate": 0.02
+  },
+  "status": "SUCCESS - Smart sampling completed!"
+}

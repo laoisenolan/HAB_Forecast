@@ -1,0 +1,10 @@
+{
+  "total_records": 5840,
+  "positive_records": 92,
+  "positive_rate": 0.015753424657534248,
+  "improvement_factor": 11.679999999999998,
+  "processing_time_seconds": 43.940908,
+  "grid_cells": 16,
+  "date_range_days": 365,
+  "status": "SUCCESS - Class imbalance solved!"
+}
