@@ -5,10 +5,10 @@
 ### 1. Prerequisites
 
 You need:
-- ✅ **Python 3.8+** (already have)
-- ✅ **Copernicus Marine credentials** (already have)
-- ✅ **Google Earth Engine credentials** (already have)
-- ✅ **OpenWeather API key** (already have)
+- **Python 3.8+** (already have)
+- **Copernicus Marine credentials** (already have)
+- **Google Earth Engine credentials** (already have)
+- **OpenWeather API key** (already have)
 
 ### 2. Environment Setup
 
